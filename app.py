@@ -4,15 +4,22 @@ from io import BytesIO
 from datetime import datetime
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
+from PIL import Image
 
+# ======== LOGO e cabeçalho ========
+logo = Image.open("images/logo.png")
 st.set_page_config(page_title="Calculadora Cardio", page_icon="❤️", layout="centered")
 
-st.title("🫀 Calculadora de Indicadores Cardíacos")
-st.write(
-    "Aplicação simples para cálculo rápido de alguns indicadores "
-    "cardiológicos (BSA, duplo produto, FCTMP e % da FCM atingida)."
-)
-st.markdown("— desenvolvida pelo filho para uso do pai cardiologista 🙂")
+col_logo, col_titulo = st.columns([1, 3])
+with col_logo:
+    st.image(logo, width=100)
+with col_titulo:
+    st.title("🫀 Calculadora de Indicadores Cardíacos")
+    st.write(
+        "Aplicação simples para cálculo rápido de alguns indicadores "
+        "cardiológicos (BSA, duplo produto, FCTMP e % da FCM atingida)."
+    )
+st.markdown("— desenvolvida para uso do Dr. António Ferreira Lobo 🙂")
 
 # =========================
 # Campos opcionais do paciente
@@ -264,4 +271,12 @@ st.download_button(
 st.divider()
 st.caption(
     "Nota: esta calculadora é meramente auxiliar e não substitui o juízo clínico."
+)
+# ======== Rodapé personalizado ========
+st.markdown("---")
+st.markdown(
+    "<div style='text-align:center; font-size:13px; color:gray;'>"
+    "© 2025 <b>AF LOBO, Serviços Clínicos</b> — Todos os direitos reservados"
+    "</div>",
+    unsafe_allow_html=True,
 )
